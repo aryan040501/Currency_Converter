@@ -48,8 +48,8 @@ ttk.Label(root).grid(row=9, column=0, columnspan=5)
 
 ttk.Label(root, text='--Converted Amount--').grid(row=10, column=2, columnspan=4, sticky='nsew')
 
-l = ttk.Label(root, textvariable=net, relief='raised')
-l.grid(row=11, column=1, columnspan=4, sticky='nsew')
+l = ttk.Label(root, textvariable=net, relief='groove')
+l.grid(row=11, column=1, columnspan=3, sticky='nsew')
 
 
 root.mainloop()
