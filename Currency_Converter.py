@@ -1,55 +1,52 @@
 #Currency Convertor
 
-
 import tkinter as tk
 import tkinter.ttk as ttk
 from forex_python.converter import CurrencyRates
 
-def show_tax(rate):
-	x = amt.get()
-	y = cf.get()
-	z = ct.get()
+def convertcurr(rate):
+	x = amount.get()
+	y = currency_from.get()
+	z = currency_to.get()
 	curr = CurrencyRates()
-	a = curr.convert(y,z,x)
-	net.set(format(a, '.2f'))
+	f = curr.convert(y,z,x)
+	final.set(format(f, '.2f'))
 
 root = tk.Tk()
-root.geometry('400x440')
+root.geometry('450x400')
 root.title('Currency Converter')
-#root.configure(bg='light blue')
 
-amt = tk.IntVar()
-cf = tk.StringVar()
-ct = tk.StringVar()
-net = tk.StringVar()
+amount = tk.IntVar()
+currency_from = tk.StringVar()
+currency_to = tk.StringVar()
+final = tk.StringVar()
 
-ttk.Label(root, text='Input amount', font='Times').grid(row=0, column=0, columnspan=5)
+tk.Label(root, text='Input amount',font='Times').grid(row=0, column=0, columnspan=5,sticky='NSEW')
 
-e = ttk.Entry(root, textvariable=amt)
-e.grid(row=1, column=1, columnspan=3, sticky='nsew', padx=5, pady=5)
+q = ttk.Entry(root, textvariable=amount)
+q.grid(row=1, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
 
-ttk.Label(root, text='Input Convert From (USD,INR,EUR,GBP etc)',font='Times').grid(row=2, column=0, columnspan=5)
+tk.Label(root, text='Input Convert From (USD,INR,EUR,GBP etc)',font='Times').grid(row=2, column=0, columnspan=5,sticky='NSEW')
 
-e = ttk.Entry(root, textvariable=cf)
-e.grid(row=3, column=1, columnspan=3, sticky='NSEW', padx=5, pady=5)
+q = ttk.Entry(root, textvariable=currency_from)
+q.grid(row=3, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
 
-ttk.Label(root, text='Input Convert To (USD,INR,EUR,GBP etc)',font='Times').grid(row=4, column=0, columnspan=5)
+tk.Label(root, text='Input Convert To (USD,INR,EUR,GBP etc)',font='Times').grid(row=4, column=0, columnspan=5,sticky='NSEW')
 
-e = ttk.Entry(root, textvariable=ct)
-e.grid(row=5, column=1, columnspan=3, sticky='nsew', padx=5, pady=5)
-
-
-b = ttk.Button(root, text='Convert', command=lambda r=1.08: show_tax(r))
-b.grid(row=7, column=2, padx=5, pady=5,sticky='nsew')
+q = ttk.Entry(root, textvariable=currency_to)
+q.grid(row=5, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
 
 
-# An empty Label to force row to be displayed
-ttk.Label(root).grid(row=9, column=0, columnspan=5)
+w = ttk.Button(root, text='Convert', command=lambda r=1.08: convertcurr(r))
+w.grid(row=7, column=2, padx=5, pady=5,sticky='NSWE')
 
-ttk.Label(root, text='--Converted Amount--').grid(row=10, column=2, columnspan=4, sticky='nsew')
 
-l = ttk.Label(root, textvariable=net, relief='raised')
-l.grid(row=11, column=1, columnspan=4, sticky='nsew')
+tk.Label(root).grid(row=9, column=0, columnspan=5)
+
+tk.Label(root, text='--Converted Amount--',font='Times').grid(row=10, column=1, columnspan=3, sticky='NSWE')
+
+l = ttk.Label(root, textvariable=final, relief='groove')
+l.grid(row=11, column=1, columnspan=3, sticky='NSWE')
 
 
 root.mainloop()
