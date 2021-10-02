@@ -1,3 +1,5 @@
+#Currency Convertor
+
 import tkinter as tk
 from forex_python.converter import CurrencyRates
 
@@ -10,6 +12,7 @@ def convertcurr(rate):
 	final.set(format(f, '.2f'))
 
 root = tk.Tk()
+
 root.geometry('350x350')
 root.title('Currency Converter')
 
@@ -18,6 +21,25 @@ currency_from = tk.StringVar()
 currency_to = tk.StringVar()
 final = tk.StringVar()
 
+tk.Label(root, text='Input amount',font='Times').grid(row=0, column=0, columnspan=5,sticky='NSEW')
+
+q = ttk.Entry(root, textvariable=amount)
+q.grid(row=1, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
+
+tk.Label(root, text='Input Convert From (USD,INR,EUR,GBP etc)',font='Times').grid(row=2, column=0, columnspan=5,sticky='NSEW')
+
+q = ttk.Entry(root, textvariable=currency_from)
+q.grid(row=3, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
+
+tk.Label(root, text='Input Convert To (USD,INR,EUR,GBP etc)',font='Times').grid(row=4, column=0, columnspan=5,sticky='NSEW')
+
+q = ttk.Entry(root, textvariable=currency_to)
+q.grid(row=5, column=1, columnspan=3, sticky='NSWE', padx=5, pady=5)
+
+
+w = ttk.Button(root, text='Convert', command=lambda r=1.08: convertcurr(r))
+w.grid(row=7, column=2, padx=5, pady=5,sticky='NSWE')
+=======
 tk.Label(root, text='Input amount').grid(row=0, column=0, columnspan=5)
 
 q = tk.Entry(root, textvariable=amount)
@@ -38,12 +60,19 @@ w = tk.Button(root, text='Convert', command=lambda r=1.08: convertcurr(r))
 w.grid(row=7, column=2, padx=5, pady=5)
 
 
+
 tk.Label(root).grid(row=9, column=0, columnspan=5)
 
+tk.Label(root, text='--Converted Amount--',font='Times').grid(row=10, column=1, columnspan=3, sticky='NSWE')
+
+l = ttk.Label(root, textvariable=final, relief='groove')
+l.grid(row=11, column=1, columnspan=3, sticky='NSWE')
+=======
 tk.Label(root, text='Converted Amount %s').grid(row=10, column=2, columnspan=2, sticky='WE')
 
 l = tk.Label(root, textvariable=final, relief='raised')
 l.grid(row=11, column=2, columnspan=2, sticky='WE')
+
 
 
 root.mainloop()
